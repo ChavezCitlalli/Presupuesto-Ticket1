@@ -1,0 +1,44 @@
+<%- include("includes/header") %>
+
+    <body>
+        <%- include("includes/navbar") %>
+       
+        <div class="container mt-4">
+      
+            <form class="row g-3" >
+                <div class="col-md-4 position-relative">
+                    <label for="proyecto" class="form-label">Proyecto:</label>
+                    <input required type="text" class="form-control" id="proyecto" name="proyecto" >   
+                </div>
+                <div class="col-md-4 position-relative">
+                    <label for="versiones" class="form-label">Version:</label>
+                    <input required type="text" class="form-control" id="versiones" name="versiones" placeholder="ej. 1.0"> 
+                </div>
+      
+                <div class="col-md-3 position-relative">
+                    <label for="mes" class="form-label">Mes</label>
+                    <input required type="month" class="form-control" id="mes" name="mes" >
+                </div>
+       
+                    <!-- <div class="p-auto">
+                        <label for="nameProyecto">Proyecto: </label>
+                        <input id="nameProyecto" type="text" class="form-comtrol" required>
+                    </div> -->
+                   
+
+                <%- include("tablas/resumenFinanciero") %>
+                <%- include("tablas/flujoEfectivo") %>
+                <%- include("tablas/estadoResultados") %>
+                <%- include("tablas/ingresos") %>
+                <%- include("tablas/costosDirectos") %>
+                <%- include("tablas/costosAdministrativos") %>
+                <%- include("tablas/Recursos") %>
+                <%- include("tablas/costos") %>
+                <%- include("tablas/resumenCostos") %>
+
+            </form>
+        </div>
+        <script src="../js/newPresupuesto.js"></script>
+        <script src="../js/app.js"></script>
+
+     <%- include('includes/footer') %>

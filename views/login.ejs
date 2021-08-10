@@ -1,0 +1,32 @@
+<%- include("includes/headerLogin") %>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+      
+          <!-- Icon -->
+          <div class="fadeIn first mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+          </div>
+      
+          <!-- Login Form -->
+          <form id="formLogin" method="POST">
+            <input required type="email" id="email" class="fadeIn second" name="login" placeholder="Correo">
+            <input required type="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+            <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
+            <div class="text-dark text-center mb-4 text-bold">¿No tienes una cuenta? <a class="btn btn-success" href="/signup">Regístrate</a></div>
+          </form>
+      
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

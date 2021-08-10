@@ -1,0 +1,48 @@
+<%- include("includes/header") %>
+
+    <body>
+
+        <%- include("includes/navbar") %>
+
+        <h1 class="p-3 text-center" >Bienvenido  <span id="idUser" class="d-none"><%= result.id %></span></h1>
+
+        <div class="container" >
+            <div class="card">
+                <a onclick="eliminar('<%= result.id %>')" class="btn text-center align-middle btn-danger mt-4 mb-4">Eliminar Cuenta</a>
+            </div>
+
+            <form class="form-control ms" id="formModificar" method="POST">
+                <div class="form-group row mt-3 mb-5">
+                    <label for="nombres" class="col-sm-2 col-form-label">Nombre(s)</label>
+                    <div class="col-sm-10">
+                        <input required id="nombres" type="text" value="<%= result.nombres %>" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row mb-5">
+                    <label for="apellidos" class="col-sm-2 col-form-label">Apellido(s)</label>
+                    <div class="col-sm-10">
+                        <input required id="apellidos" type="text" value="<%= result.apellidos %>" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row mb-5">
+                    <label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
+                    <div class="col-sm-10">
+                        <input required id="usuario" type="text" value="<%= result.usuario %>" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row mb-5">
+                    <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+                    <div class="col-sm-10">
+                        <input required id="password" type="password" value="<%= result.pass %>" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mb-5">
+                    <button type="submit" class="btn btn-outline-success mx-2">Guardar</button>
+                    <a class="btn btn-outline-danger" onclick="cancelUpdate()">Cancelar</a>
+                </div>
+            </form>
+        </div>
+
+        <script src="../js/actualizarUser.js"></script>
+        
+        <%- include('includes/footer') %>

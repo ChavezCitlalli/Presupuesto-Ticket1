@@ -1,0 +1,58 @@
+<%- include("includes/header") %>
+
+    <body>
+
+        <%- include("includes/navbar") %>
+
+        <h4 class="p-3 text-center">Listado</h4>
+
+        <div class="container">
+            <div class="d-flex flex-row-reverse">
+                <a href="/index/nuevo" class="btn text-center align-middle btn-outline-dark mt-4"><i class='bx bxs-plus-circle'></i></a>
+            </div>
+            
+            <div style="overflow-x:auto;" >
+              <table class="table-bordered text-center table mt-5 caption-top align-middle">
+                  <thead class="table-success text">
+
+                      <tr>
+                          <td scope="col">Id</td>
+                          <td scope="col">Fecha de Creación</td>
+                          <td scope="col">Proyecto</td>
+                          <td scope="col">Versión</td>
+                          <td scope="col">ACCIONES</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  
+                  <% results.forEach((presupuesto)=>{ %>
+                      <tr>
+                        <td>
+                          <%= presupuesto.id %>
+                        </td>
+                        <td>
+                          <%= presupuesto.fecha %> 
+                        </td>
+                        <td>
+                          <%= presupuesto.proyecto %>
+                        </td>
+                        <td>
+                            <%= presupuesto.version %>
+                          </td>
+                        
+                        <td>
+                          <div class="btn-group">
+                            <a class="btn btn-outline-primary"><i class='bx bxs-edit'></i></a>
+                            <a class="btn btn-outline-success ms-2 me-2"><i class='bx bxl-telegram'></i></a>
+                            <a onclick="eliminarPresupuesto('<%= presupuesto.id %>')" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+
+        <script src="js/index.js"></script>
+        <%- include('includes/footer') %>

@@ -1,0 +1,36 @@
+   <!-- Flujo de Efectivo -->
+
+            <div class="card">
+   
+            <div class="form-control mt-5">
+                <div style="overflow-x:auto;" >
+                    <table class="table-bordered text-center table table-responsive caption-top text-center" style="background-color: #f2f6fcd8" id="TableFlujo">
+                        <caption><h4>Flujo de Efectivo</h4></caption>
+                        <tr class="table text">
+                            <td scope="col"></td>
+                            <td scope="col">Total</td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Ingresos</td>
+                            <td><input value="0" readonly type="number" class="form-control flujo-total-ingresos" step="any" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Egresos</td>
+                            <td><input value="0" readonly type="number" class="form-control flujo-total-egresos" step="any" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Total</td>
+                            <td><input value="0" readonly type="number" class="form-control flujo-total-total" step="any" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Acumulado</td>
+                            <td><input value="0" readonly type="number" class="form-control flujo-total-acumulado" step="any" min="0"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a id="addColumn" class="btn btn-success mx-2">Agregar mes</a>
+                    <a id="delColumn" class="btn btn-secondary">Eliminar mes</a>
+                </div>
+            </div>
+</div>
