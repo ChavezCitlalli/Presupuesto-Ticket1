@@ -65,8 +65,7 @@ module.exports = async (app)=> {
             try {
                 let resultado = await usuarioController.putUsuario(req, res);
                 if(resultado){
-                    res.send(resultado);  //para visualizar en POSTMAN
-                   
+                    res.send(resultado);  //para visualizar en POSTMAN 
                 }
             } catch (error) {
                 res.status(400).json('No se puedo modificar el usuarios')
