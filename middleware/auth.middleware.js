@@ -27,11 +27,11 @@ class AuthMidlewares {
             return res.status(401).json({
                 msg: 'No hay token en la petición'
             });
-        }
+        } 
         try {
             const {data} = jwt.verify(token, process.env.SECRET_KEY);
-            const user = await Usuarios.findByPk(data.id);
-            if(!user || !user.status ) {
+            const user = await Usuarios.findByPk(data.id_usuarios);
+            if(!user) {
                 return res.status(401).json({
                     msg: 'Token no válido - usuario no existe en DB'
                 });
@@ -50,8 +50,8 @@ class AuthMidlewares {
    
 
     async validateUserExists(req, res, next) {
-        const { email, password } = req.body;
-        console.log(email, password);
+        const { email, pass } = req.body;
+        console.log(email, pass);
         try {
             const user = await loginModels.login({ email, pass });
             if (!user) {

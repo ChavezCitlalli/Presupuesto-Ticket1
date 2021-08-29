@@ -116,8 +116,8 @@ async function eliminar(id) {
             if (result.isConfirmed) {
                 try {
                     let info = await Usuarios.recuperaUsuario();
-                    let resultado = await fetch("http://localhost:3000/delete/" + id, {
-                    method: 'get',
+                    let resultado = await fetch("http://localhost:3000/" + id, {
+                    method: 'post',
                     headers: {
                         "Accept": "application/json, text/plain, *,*",
                         "Content-Type": "application/json",

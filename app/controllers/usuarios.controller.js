@@ -6,25 +6,16 @@ const usuarioModels = new UsuarioModels();
 
 class UsuarioController {
     
-    async getUsuarios(req, res) {
-        try{
-            const usuarios = await usuarioModels.getUsuarios();
-            return(usuarios);
-        } catch(err){
-            console.log(err);
-            return res.status(500).json({
-                err: 'Hable con el administrador'
-            });
-        }
-    }
+  
 
-    async getUsuarioId({id}) {
+    async getUsuarioId(req,res) {
+        let { id } = req.params;
         try {
             const usuario = await usuarioModels.getUsuarioId({id:id});
             if(usuario.error){
                 return res.status(usuario.status).json({error: usuario.msg});
             }
-            return (usuario);
+            res.render('usuario', {result:usuario});
         } catch(err){
             console.log(err);
             return res.status(500).json({
@@ -35,7 +26,6 @@ class UsuarioController {
     
     async newUsuario(req, res) {
         const {  nombres, apellidos, usuario, email, pass  } = req.body;
-        console.log (email,nombres, apellidos)
         try {
             const usuarios = await usuarioModels.newUsuario({ nombres, apellidos, usuario, email, pass  });
             if(usuarios.error) {
@@ -44,7 +34,7 @@ class UsuarioController {
                 })
             }
             await usuarios.save();
-            return(usuarios);
+            res.send(usuarios);
         } catch (err) {
             console.log(err);
             return res.status(500).json({
@@ -61,7 +51,7 @@ class UsuarioController {
             if (usuario.error) {
                 return res.status(400).json({ error: usuario.msg });
             }
-            return(usuario);
+            res.send(usuario);
         } catch (err) {
             console.log(err);
             return res.status(500).json({
@@ -77,7 +67,7 @@ class UsuarioController {
             if (usuario.error) {
                 return res.status(usuario.status).json({ error: usuario.msg });
             }
-            return usuario;
+            res.send(usuario)
         } catch (err) {
             console.log(err);
             return res.status(500).json({

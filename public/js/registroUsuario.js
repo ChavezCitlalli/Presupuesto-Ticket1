@@ -43,6 +43,7 @@ form.addEventListener('submit', async (event) => {
         })
     })
     let vuelta = await resultado.json();
+    
     if(vuelta.error){
         swal({
             title: `${vuelta.error}`,
@@ -56,6 +57,6 @@ form.addEventListener('submit', async (event) => {
         data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
         data.token = vuelta.token;
         Usuarios.guardaUsuario(data);
-            location.href = '/index'
+            location.href = '/login'
     }
 })

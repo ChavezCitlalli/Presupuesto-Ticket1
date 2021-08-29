@@ -3,17 +3,16 @@ const app = express();
 require('dotenv').config();
 const cors = require('cors');
 const sequelize = require('./db/conexion');
-const routePresupuestos = require('./app/views/presupuestos.view');
-const routeUsuarios = require('./app/views/usuarios.view');
-const login = require ('./app/views/login.view')
 
-const {  Usuarios } = require ('./db/index')
+//PARA INICIAR LA BASE DATOS
+const {  Usuarios, CostosAdministrativos, CostosDirectos, FlujoEfectivo, Ingresos,
+    Presupuestos, Recursos, IngresosValor, CostoAValor, DirectosValor,RecursosValor } = require ('./db/index');
 
 app.use(express.urlencoded( { extended: true }));
 app.use(express.json());
 app.use(cors());
-//app.use(midd.limiter);
 
+//configuracion global
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -28,10 +27,25 @@ app.use((err, req, res, next)=> {
     return res.status(500).json('Se produjo un error inesperado')
 });
 
+app.use(require('./app/views/index'));
+
 //Iniciar el Servidor
 async function inicioServidor() {
     try {
+ /////////// solo para crear las tablas al inicio (facilitar la creacion de las tablas) 
         await Usuarios.sync({alter:true});
+        await Presupuestos.sync({alter:true});
+        await Ingresos.sync({alter:true});
+        await Recursos.sync({alter:true});
+        await CostosAdministrativos.sync({alter:true});
+        await CostosDirectos.sync({alter:true});
+        await FlujoEfectivo.sync({alter:true});
+        await IngresosValor.sync({alter:true});
+        await DirectosValor.sync({alter:true});
+        await CostoAValor.sync({alter:true});
+        await RecursosValor.sync({alter:true});
+    
+
         await sequelize.authenticate();
         console.log('Conexion con la DB correcta!');
         app.listen(process.env.PORT, function (){
@@ -41,10 +55,7 @@ async function inicioServidor() {
         console.log('No se pudo conectar con la DB');
     }
 }
-
+//iniciando servidor
 inicioServidor();
 
-routePresupuestos(app);
-routeUsuarios(app);
-login(app);
 

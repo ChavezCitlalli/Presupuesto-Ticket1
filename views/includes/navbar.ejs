@@ -32,7 +32,6 @@
             usuario.innerHTML ="";
             let resultado = JSON.parse(localStorage.getItem('dataUsuario'));
             usuario.innerHTML = `${resultado.user}`;
-            
             linkuser.setAttribute(href=`/usuario/${resultado.id}`);
         }
         function cerrarSesion(){

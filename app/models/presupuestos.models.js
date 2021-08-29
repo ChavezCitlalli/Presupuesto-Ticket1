@@ -11,8 +11,8 @@ const { Presupuestos,
     RecursosValor } = require('../../db');
 
 
+class PresupuestoModel {
 
-module.exports = class PresupuestoModel {
   constructor(proyecto, version,  mes,valores) {
       this.proyecto = proyecto;
       this.version = version;
@@ -263,34 +263,19 @@ module.exports = class PresupuestoModel {
   }
 
   //Eliminar Presupuesto
-    eliminarPresupuesto = async (id) => {
-    const presupuesto = await Presupuestos.findOne({
-        where: { id: id }
-    });
-    console.log (presupuesto)
-    if (!presupuesto ){
-        return {
-            error: true,
-            msg: 'No se logró encontrar ningun presupuesto',
-            status: 400
-        };
+    async eliminarPresupuesto ({id}) {
+        const presupuesto = await Presupuestos.findOne({
+            where: {id: id}
+        });
+        if (!presupuesto ){
+            return {
+                error: true,
+                msg: 'No se logró encontrar ningun presupuesto',
+                status: 400
+            };
+        }
+        await presupuesto.destroy(id);
+        return true;
     }
-    await presupuesto.update({
-        proyecto:"",
-        mes:"",
-        version: ""
-    });
-    return true;
 }
-
-//    eliminarPresupuesto = async (id) => {
-//     try {
-//         await Presupuestos.update({
-//             proyecto: ''}, 
-//             {where: { id : id}})
-//         return true;
-//     }catch (err){
-//         throw new Error ('No se pudo eliminar el presupuesto seleccionado')
-//     }
-//   }
-} 
+module.exports = PresupuestoModel;

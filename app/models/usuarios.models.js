@@ -5,17 +5,6 @@ const bcryptjs = require('bcryptjs');
 
 class UsuarioModels {
 
-    async getUsuarios() {
-        const usuario = await Usuarios.findAll();
-        if(!usuario ) {
-            return {
-                error: true,
-                msg: 'No se logró encontrar ningun usuario',
-                status: 400
-            };
-        }
-        return usuario;
-    };
 //buscar usuario por ID
     async getUsuarioId({ id }) {
         const usuario = await Usuarios.findByPk(id);
@@ -47,7 +36,6 @@ class UsuarioModels {
     async newUsuario ({nombres, apellidos,usuario, email, pass}) {
         console.log (email,nombres, apellidos)
         const usuarioExiste = await this.getUsuarioEmail({email: email});
-        console.log(usuarioExiste);
         console.log(!usuarioExiste.error);
         if(!usuarioExiste.error) {
             return {
@@ -71,17 +59,17 @@ class UsuarioModels {
     };
 
     async putUsuario({ id, body }) {
-        const { nombres, apellidos, email, pass } = body;
-        const usuario = await Usuarios.findByPk(id);
-        if (!usuario ){
+        const { nombres, apellidos, email, usuario} = body;
+        const usuarios = await Usuarios.findByPk(id);
+        if (!usuarios ){
             return {
                 error: true,
                 msg: 'No se logró encontrar ningun usuario',
                 status: 400
             };
         };
-        await usuario.update({ nombres, apellidos, email, pass });
-        return usuario;
+        await usuarios.update({ nombres, apellidos, email, usuario });
+        return usuarios;
     };
 
     async deleteUsuario({ id }) {
