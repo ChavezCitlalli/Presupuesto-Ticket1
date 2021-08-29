@@ -1,29 +1,29 @@
 
 const Usuarios = require ('./usuarios.db');
-// const CostosAdministrativos = require ('./tablasModels/model.costosAdministrativos');
-// const CostosDirectos = require ('./tablasModels/model.costosDirectos');
-// const FlujoEfectivo = require ('./tablasModels/model.flujoefectivo');
-// const Ingresos = require ('./tablasModels/model.ingresos');
-// const Presupuestos = require ('./tablasModels/model.presupuestos');
-// const Recursos = require ('./tablasModels/model.recursos');
-// const CostoAValor = require('./valoresModels/model.costosAdministrativosValores');
-// const DirectosValor = require('./valoresModels/model.costosDirectosValores');
-// const IngresosValor = require('./valoresModels/model.ingresosValores');
-// const RecursosValor = require('./valoresModels/model.recursosValores');
+const CostosAdministrativos = require ('./tablasModels/costosAdministrativos.db');
+const CostosDirectos = require ('./tablasModels/costosDirectos.db');
+const FlujoEfectivo = require ('./tablasModels/flujoefectivo.db');
+const Ingresos = require ('./tablasModels/ingresos.db');
+const Presupuestos = require ('./presupuestos.db');
+const Recursos = require ('./tablasModels/recursos.db');
+const CostoAValor = require('./valoresModels/costosAdministrativosValores.db');
+const DirectosValor = require('./valoresModels/costosDirectosValores.db');
+const IngresosValor = require('./valoresModels/ingresosValores.db');
+const RecursosValor = require('./valoresModels/recursosValores.db');
 
 
 module.exports = {
    
-    Usuarios
-    // CostosAdministrativos,
-    // CostosDirectos,
-    // FlujoEfectivo,
-    // Ingresos,
-    // Presupuestos,
-    // Recursos,
-    // IngresosValor,
-    // CostoAValor,
-    // DirectosValor,
-    // RecursosValor
+    Usuarios,
+    CostosAdministrativos,
+    CostosDirectos,
+    FlujoEfectivo,
+    Ingresos,
+    Presupuestos,
+    Recursos,
+    IngresosValor,
+    CostoAValor,
+    DirectosValor,
+    RecursosValor
 
 };

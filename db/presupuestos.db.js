@@ -1,10 +1,11 @@
 const {DataTypes, Sequelize, Model} = require('sequelize');
-const sequelize = require('../../../db/conexion');
-const CostosDirectos = require('./model.costosDirectos');
-const Ingresos = require('./model.ingresos');
-const CostosAdministrativos = require('./model.costosAdministrativos');
-const FlujoEfectivo = require('./model.flujoefectivo');
-const Recursos = require('./model.recursos');
+const sequelize = require('./conexion');
+const CostosDirectos = require('./tablasModels/costosDirectos.db');
+const Ingresos = require('./tablasModels/ingresos.db');
+const CostosAdministrativos = require('./tablasModels/costosAdministrativos.db');
+const FlujoEfectivo = require('./tablasModels/flujoefectivo.db');
+const Recursos = require('./tablasModels/recursos.db');
+
 
 const Presupuestos = sequelize.define('presupuestos', {
     id : {
