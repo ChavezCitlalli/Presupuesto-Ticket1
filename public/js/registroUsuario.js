@@ -28,7 +28,7 @@ class Usuarios {
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     Usuarios.guardaUsuario(new Usuarios());
-    let resultado = await fetch("http://localhost:3000/signup", { 
+    let resultado = await fetch("http://localhost:3000/save", { 
         method: 'post',
         headers: {
             "Accept": "application/json, text/plain, *,*",
