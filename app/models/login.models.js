@@ -1,15 +1,22 @@
 const bcryptjs = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const { Usuarios } = require("../../db/index");
 
+const JWTModel = require('./jwt.models');
+const jwtModel = new JWTModel();
 
 class LoginModels {
 
-    async login ({email, pass})  {
+    async login ({ email, pass })  {
         const user = await this.existenciaDeUsuario({email});
+        if(!user) {
+            return {
+                error: true,
+                msg: 'Email o password incorrectos',
+                status: 400
+            }
+        }
         const validPassword = bcryptjs.compareSync(pass+'', user.pass);
-
         if(!validPassword) {
             return {
                 error: true,
@@ -18,7 +25,7 @@ class LoginModels {
             }
         }
         delete user.dataValues.pass;
-        const token = await this.generarJWT(user);
+        const token = await jwtModel.generaJWT(user);
         return {
             user,
             token
@@ -35,21 +42,7 @@ class LoginModels {
         };
     };
 
-    generarJWT (user) {
-        return new Promise((resolve, reject) => {
-            const payload = user;
-            jwt.sign({data: payload}, process.env.SECRET_KEY, {
-                expiresIn: '24h'
-            }, (err, token = '') => {
-                if(err) {
-                    console.log(err);
-                    return reject({msg: 'No se pudo generar el token'});
-                }
-                resolve(token);
-            });
-        });
-
-    }
+    
   
 };
 module.exports = LoginModels;
