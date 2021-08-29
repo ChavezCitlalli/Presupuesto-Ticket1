@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 
-class JWTService {
+class JWTModels {
     
     generaJWT (user) {
         return new Promise((resolve, reject) => {
             const payload = user;
-            jwt.sign({data: payload}, process.env.JWT_SEED, {
+            jwt.sign({data: payload}, process.env.SECRET_KEY, {
                 expiresIn: '24h'
             }, (err, token = '') => {
                 if(err) {
@@ -19,4 +19,4 @@ class JWTService {
     }
 }
 
-module.exports = JWTService
+module.exports = JWTModels;

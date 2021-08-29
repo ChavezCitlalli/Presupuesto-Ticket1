@@ -1,32 +1,23 @@
 
-//const middUser = require('../../middleware/middUsuarios')
 const express = require('express');
 const app = express();
-const LoginController = require('../controllers/login.controller');
 
+const LoginController = require('../controllers/login.controller');
 const loginController = new LoginController();
 
-module.exports = async ( app ) => {
+const { AuthMiddlewares } = require('../../middleware');
+const authMiddlewares = new AuthMiddlewares();
+
+
     
-    //Ruta para Login
-    app.get('/login', async (req,res)=>{
-        try{
-            res.render('login');
-        }catch (err){
-            res.estatus(400).json('No se puede mostrar')
-        }
-    })
+//Ruta para Login
+app.get('/login', async (req,res) =>{ res.render('login')});
 
 
-    app.post('/login', /*middUser.validarLogin,*/ async (req,res)=>{
-        const data = req.body;
-        try {
-            let resultado = await loginController.login({data});
-            res.send(resultado)
-           
-        }catch (err){
-            res.status(400).json({ error: err.message})
-        }
-    })
-}
+
+app.post('/login',authMiddlewares.validateUserExists,
+    authMiddlewares.checkEmailAndPassword, async (req,res)=>{
+    await loginController.login(req,res)});
+
+module.exports = app;
     

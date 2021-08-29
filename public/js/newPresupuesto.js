@@ -1,9 +1,3 @@
-const presupuesto = new Presupuesto();
-const tableFlujo = document.getElementById('TableFlujo')
-const tablaIngresos = document.getElementById('TableIngresos');
-const tablaCostosDirectos = document.getElementById('TableDirectos');
-const tablaAdministrativos = document.getElementById('TableAdministrativos');
-const tablaRecursos = document.getElementById('TableAsignacion');
 
 //Utilidades
 let mes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']

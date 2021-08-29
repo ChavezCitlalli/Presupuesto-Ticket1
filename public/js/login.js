@@ -39,7 +39,7 @@ form.addEventListener('submit', async (event) => {
     let vuelta = await resultado.json();
     if(vuelta.error){
         swal({
-            title: `${vuelta.error}`,
+            title: 'Email o contraseña incorrectas',
             icon: "error",
           });
     } else {

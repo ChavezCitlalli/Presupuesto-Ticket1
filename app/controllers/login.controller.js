@@ -5,11 +5,11 @@ const loginModels = new LoginModels();
 
 class LoginController {
 
-    async login({data}) {
-        const { email, pass } = data;
+    async login(req,res) {
+        const { email, pass } =req.body; 
         try{
             const userAndToken = await loginModels.login({ email, pass });
-            return (userAndToken);
+            res.send(userAndToken)
         } catch(err){
             console.log(err);
             return res.status(500).json({

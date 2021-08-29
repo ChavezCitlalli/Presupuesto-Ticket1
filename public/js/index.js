@@ -12,8 +12,8 @@ async function eliminarPresupuesto(id) {
             if (result.isConfirmed) {
                 try {
                     let info = await JSON.parse(localStorage.getItem('dataUsuario'))
-                    let resultado = await fetch("http://localhost:3000/eliminar/" + id, { 
-                    method: 'get',
+                    let resultado = await fetch("http://localhost:3000/presupuesto/" + id, { 
+                    method: 'delete',
                     headers: {
                         "Accept": "application/json, text/plain, *,*",
                         "Content-Type": "application/json",
