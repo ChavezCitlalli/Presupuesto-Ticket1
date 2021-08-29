@@ -1,8 +1,8 @@
 const {DataTypes, Model} = require('sequelize');
-const sequelize = require('../../../db/conexion');
-const costoAValor= require('../valoresModels/model.costosAdministrativosValores');
+const sequelize = require('../conexion');
+const DirectosValor = require('../valoresModels/costosDirectosValores.db');
 
-const CostosAdministrativos = sequelize.define('costos_administrativos', {
+const CostosDirectos = sequelize.define('costos_directos', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -24,13 +24,13 @@ const CostosAdministrativos = sequelize.define('costos_administrativos', {
     timestamps: false
 });
 
-CostosAdministrativos.hasMany(costoAValor, {
+CostosDirectos.hasMany(DirectosValor, {
     foreignKey: {
-        name: 'admin_id',
+        name: 'directo_id',
         type: DataTypes.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
 });
 
-module.exports = CostosAdministrativos;
+module.exports = CostosDirectos;

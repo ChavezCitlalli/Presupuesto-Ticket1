@@ -1,26 +1,27 @@
 const {DataTypes, Model} = require('sequelize')
-const sequelize = require('../../../db/conexion')
+const sequelize = require('../conexion')
 
-const IngresosValor = sequelize.define('ingresos_valores', {
+//Definir mi Modelo con que voy a trabajar
+const FlujoEfectivo = sequelize.define('flujoEfectivo', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    ingreso_id: {
+    presupuesto_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'ingresos',
+            model: 'presupuestos',
             key: 'id'
         },
         allowNull: false        
     },
-    valor: {
-        type: DataTypes.DECIMAL(10,2),
+    ingreso: {
+        type: DataTypes.DECIMAL(20,2),
         allowNull: true,        
     },    
 }, {
     timestamps: false
 });
 
-module.exports = IngresosValor;
+module.exports = FlujoEfectivo;

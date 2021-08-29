@@ -1,6 +1,6 @@
 const {DataTypes, Model} = require('sequelize');
-const sequelize = require('../../../db/conexion');
-const RecursoValor = require('../valoresModels/model.recursosValores');
+const sequelize = require('../conexion');
+const RecursoValor = require('../valoresModels/recursosValores.db');
 
 
 const Recursos = sequelize.define('recursos', {

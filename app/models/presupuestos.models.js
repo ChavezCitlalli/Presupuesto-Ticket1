@@ -1,14 +1,15 @@
 const sequelize = require('../../db/conexion');
-const Presupuestos = require('../models/tablasModels/model.presupuestos');
-const FlujoEfectivo = require('../models/tablasModels/model.flujoefectivo');
-const Ingresos = require('../models/tablasModels/model.ingresos');
-const IngresosValor = require('../models/valoresModels/model.ingresosValores');
-const CostosDirectos = require('../models/tablasModels/model.costosDirectos');
-const DirectosValor = require('../models/valoresModels/model.costosDirectosValores');
-const CostosAdministrativos = require('../models/tablasModels/model.costosAdministrativos');
-const CostoAValor= require('../models/valoresModels/model.costosAdministrativosValores');
-const Recursos = require('../models/tablasModels/model.recursos');
-const RecursosValor = require('../models/valoresModels/model.recursosValores');
+const { Presupuestos,
+    FlujoEfectivo,
+    IngresosValor,
+    Ingresos,
+    CostosDirectos, 
+    CostoAValor,
+    DirectosValor,
+    CostosAdministrativos,
+    Recursos,
+    RecursosValor } = require('../../db');
+
 
 
 module.exports = class PresupuestoModel {
@@ -95,10 +96,9 @@ module.exports = class PresupuestoModel {
   }
 
   //Mostrar todos lo Presupuestos
-  static listarPresupuestos = async () => {
+  listarPresupuestos = async () => {
       try {
         let resultado = await sequelize.query("SELECT id, proyecto, version, CONVERT(varchar(10), createdAt) AS fecha FROM dbo.presupuestos ")
-        
         return resultado[0]
       } catch (error) {
         throw new Error('Error al consultar la DB');
@@ -106,7 +106,7 @@ module.exports = class PresupuestoModel {
   }
 
 
-  static detallesPresupuesto = async (id) => {
+   async detallesPresupuesto (id) {
     try{
         let presupuesto = await Presupuestos.findOne({
             where: {
@@ -263,14 +263,34 @@ module.exports = class PresupuestoModel {
   }
 
   //Eliminar Presupuesto
-  static eliminarPresupuesto = async (id) => {
-    try {
-        await Presupuestos.update({
-            estado: 'Eliminado'}, 
-            {where: { id : id}})
-        return true;
-    }catch (err){
-        throw new Error ('No se pudo eliminar el presupuesto seleccionado')
+    eliminarPresupuesto = async (id) => {
+    const presupuesto = await Presupuestos.findOne({
+        where: { id: id }
+    });
+    console.log (presupuesto)
+    if (!presupuesto ){
+        return {
+            error: true,
+            msg: 'No se logró encontrar ningun presupuesto',
+            status: 400
+        };
     }
-  }
+    await presupuesto.update({
+        proyecto:"",
+        mes:"",
+        version: ""
+    });
+    return true;
+}
+
+//    eliminarPresupuesto = async (id) => {
+//     try {
+//         await Presupuestos.update({
+//             proyecto: ''}, 
+//             {where: { id : id}})
+//         return true;
+//     }catch (err){
+//         throw new Error ('No se pudo eliminar el presupuesto seleccionado')
+//     }
+//   }
 } 

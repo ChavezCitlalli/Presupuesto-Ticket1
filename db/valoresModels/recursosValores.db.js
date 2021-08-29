@@ -1,5 +1,5 @@
 const {DataTypes, Model} = require('sequelize')
-const sequelize = require('../../../db/conexion')
+const sequelize = require('../conexion')
 
 
 const RecursosValues = sequelize.define('recursos_valores', {
