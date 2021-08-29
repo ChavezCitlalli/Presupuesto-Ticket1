@@ -5,6 +5,8 @@ const cors = require('cors');
 const sequelize = require('./db/conexion');
 const routePresupuestos = require('./app/views/presupuestos.view');
 const routeUsuarios = require('./app/views/usuarios.view');
+const login = require ('./app/views/login.view')
+
 const {  Usuarios } = require ('./db/index')
 
 app.use(express.urlencoded( { extended: true }));
@@ -44,5 +46,5 @@ inicioServidor();
 
 routePresupuestos(app);
 routeUsuarios(app);
-
+login(app);
 

@@ -7,14 +7,6 @@ const usuarioController = new UsuarioController();
 module.exports = async (app)=> {
     
    
-    //Página de administrador
-    // app.get('/index', async (req, res) => {
-    //     try{
-    //         res.render('index');
-    //     }catch (err){
-    //         res.status(400).json('No se puede mostrar')
-    //     }
-    // })
     app.get('/signup', async (req, res) => {
         try{
             res.render('signup');
@@ -22,19 +14,7 @@ module.exports = async (app)=> {
             res.status(400).json('No se puede mostrar')
         }
     })
-    //ruta para enlistar
-        // app.get('/usuarios', async(req,res) => {
-        //     try {
-        //         let resultado = await usuarioController.getUsuarios();
-        //         //res.render('listar_usuarios', {results:resultado});
-        //         res.send(resultado) //para visualizar en POSTMAN
-        //     }catch (err){
-        //         console.log(err);
-        //         res.status(400).json('Error al dirigirse a la ruta vistas');
-        //     };
-        // });
-
-         
+             
         app.post('/save',/*middUser.verificacionUsuario,*/ async (req,res) => {
             try{
                 let resultado = await usuarioController.newUsuario(req,res);
@@ -63,8 +43,8 @@ module.exports = async (app)=> {
             try {
                 let resultado = await usuarioController.getUsuarioId({id}); 
                 console.log(resultado)
-                res.send(resultado); // para visualizar en POSTMAN
-                //res.render('usuario', {result:resultado});
+                //res.send(resultado); // para visualizar en POSTMAN
+                res.render('usuario', {result:resultado});
                
             }catch (err){
                 res.status(400).json('Error al dirigirse a la pagina EDITAR');
