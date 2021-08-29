@@ -2,8 +2,8 @@ const sequelize = require('../../db/conexion');
 const PresupuestoController = require('../controllers/presupuestos.controller');
 const presupuestoController = new PresupuestoController();
 
-const middValidacion = require('../../middleware/middVerificacionDatos');
-const middAuth = require('../../middleware/middVerificacion');
+// const middValidacion = require('../../middleware/middVerificacionDatos');
+// const middAuth = require('../../middleware/middVerificacion');
 
 module.exports = async (app)=> {
 
